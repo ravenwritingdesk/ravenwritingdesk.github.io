@@ -57,7 +57,7 @@
   </section>
 
 <script src="/dist/RTCMultiConnection.min.js"></script>
-<script src="/node_modules/webrtc-adapter/out/adapter.js"></script>
+<script src="/adapter.js"></script>
 <script src="/socket.io/socket.io.js"></script>
 <!-- <script src="https://www.webrtc-experiment.com/RecordRTC.js"></script> -->
 <script>
@@ -89,10 +89,10 @@ connection.maxRelayLimitPerUser = 1;
 connection.autoCloseEntireSession = true;
 
 // by default, socket.io server is assumed to be deployed on your own URL
-connection.socketURL = '/';
+// connection.socketURL = '/';
 
 // comment-out below line if you do not have your own socket.io server
-// connection.socketURL = 'https://rtcmulticonnection.herokuapp.com:443/';
+connection.socketURL = 'https://rtcmulticonnection.herokuapp.com:443/';
 
 connection.socketMessageEvent = 'scalable-media-broadcast-demo';
 
