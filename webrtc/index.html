@@ -1,35 +1,158 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
-  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
 <head>
-<meta name="generator" content="jemdoc, see http://jemdoc.jaboc.net/" />
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<link rel="stylesheet" href="jemdoc.css" type="text/css" />
-<title>Wang Chuwen</title>
+  <meta charset="utf-8">
+  <title>Web_RTC Platform</title>
+  <link rel="canonical" href="/webrtc/">
+  <meta name="google-site-verification" content="zhJ273gZGLJ_Cbl-muzPYYTR6jD7sCCgufDIRS5h4SE" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <link rel="shortcut icon" href="/webrtc/logo.png">
+  <link rel="stylesheet" href="/webrtc/stylesheet.css">
+  <script src="/webrtc/menu.js"></script>
+  <style>
+  .search-container {
+    text-align: left;
+    margin: -2em 5%;
+    margin-top: 0;
+  }
+
+  .search-container input {
+    background-color: transparent;
+  }
+
+  .search-container td {
+    border: 0;
+    vertical-align: top;
+    padding: 0;
+    border-top: none;
+    border-right: none;
+  }
+
+  .table-style {
+    border-collapse: collapse;
+    border-spacing: 0px;
+    margin-top: 0px;
+    margin-bottom: 16px;
+    display: block;
+    overflow: auto;
+    word-break: normal;
+    color: rgb(51, 51, 51);
+    font-family: 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, freesans, sans-serif;
+    font-size: 16px;
+    line-height: 25.6000003814697px;
+    margin-top: 10px;
+    margin-left: 20px;
+  }
+
+  .tr-style {
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-top-color: rgb(204, 204, 204);
+    background-color: rgb(248, 248, 248);
+  }
+
+  .td-style {
+    padding: 6px 13px;
+    border: 1px solid rgb(221, 221, 221);
+  }
+
+  .td-style2 {
+    color: rgb(65, 131, 196);
+    text-decoration: none;
+    background: transparent;
+  }
+
+  .table-style {
+    min-width: 60%!important;
+    display: table!important;
+    text-align: left!important;
+  }
+  </style>
 </head>
 <body>
-<table summary="Table for page layout." id="tlayout">
-<tr valign="top">
-<td id="layout-menu">
-<div class="menu-category">menu</div>
-<div class="menu-item"><a href="index.html" class="current">Home</a></div>
-<div class="menu-item"><a href="research.html">Research</a></div>
-<div class="menu-item"><a href="publications.html">Publication</a></div>
-<div class="menu-item"><a href="courses.html">Courses</a></div>
-<div class="menu-item"><a href="activities.html">Activities</a></div>
-<div class="menu-category">Demos</div>
-<div class="menu-item"><a href="/webrtc.html" class="current">WebRTC</a></div>
-<div class="menu-item"><a href="nses.html">Navier-Stokes_solver</a></div>
-<div class="menu-category">links</div>
-<div class="menu-item"><a href="https://github.com/ravenwritingdesk">GitHub</a></div>
-<div class="menu-item"><a href="blog.html">Blog</a></div>
-</td>
-<td id="layout-content">
-</td>
+  <header>
+    <a class="logo" href="/"><img src="/webrtc/logo.png" alt="wcwWebRTC"></a>
+    <a href="/" class="menu-explorer">Menu<img src="/webrtc/menu-icon.png" alt="Menu"></a>
+    <nav>
+      <li>
+        <a href="/">Home</a>
+      </li>
+      <li>
+        <a href="/webrtc/">WEBRTC_Demos</a>
+      </li>
+    </nav>
+  </header>
 
-<script src="/RTCMultiConnection-3.7.0/server.js"></script>
+  <h1>
+    RTCMultiConnection Demos
+    
+    <p class="no-mobile">
+      Video Chat with GirlFriend.
+    </p>
+  </h1>
 
-</tr>
-</table>
+  <section id="featured" class="table-style-container">
+      <h2>
+          <a href="#featured">Featured Demos</a>
+      </h2>
+      <table class="table-style">
+          <thead>
+              <tr>
+                  <th class="td-style">RTCMultiConnection Demo Title</th>
+                  <th class="td-style">Demo</th>
+              </tr>
+          </thead>
+          <tbody>
+                  <tr class="tr-style" style="background: #e4f6ff;">
+                    <td class="td-style">Video Conferencing (MANY_TO_MANY)</td>
+                    <td class="td-style"><a href="/demos/video-conferencing.html" class="td-style2">Demo</a></td>
+                </tr>
+
+                <tr class="tr-style" style="background: #e4f6ff;">
+                    <td class="td-style">Dashboard + Video Conferencing + Chat + File Sharing</td>
+                    <td class="td-style"><a href="/demos/dashboard/" class="td-style2">Demo</a></td>
+                </tr>
+
+                <tr class="tr-style" style="background: #e4f6ff;">
+                    <td class="td-style">Screen Sharing</td>
+                    <td class="td-style"><a href="/demos/screen-sharing.html" class="td-style2">Demo</a></td>
+                </tr>
+
+                <tr class="tr-style" style="background: #e4f6ff;">
+                    <td class="td-style">Video Broadcasting</td>
+                    <td class="td-style"><a href="/demos/video-broadcasting.html" class="td-style2">Demo</a></td>
+                </tr>
+
+                <tr class="tr-style" style="background: #e4f6ff;">
+                    <td class="td-style">File Sharing</td>
+                    <td class="td-style"><a href="/demos/file-sharing.html" class="td-style2">Demo</a></td>
+                </tr>
+                <tr class="tr-style" style="background: #e4f6ff;">
+                    <td class="td-style">Audio Conferencing</td>
+                    <td class="td-style"><a href="/demos/audio-conferencing.html" class="td-style2">Demo</a></td>
+                </tr>
+          </tbody>
+      </table>
+  </section>
+  <section id="scalable-broadcast" class="table-style-container">
+      <h2>
+          <a href="#scalable-broadcast">Scalable Broadcast Demos</a>
+      </h2>
+      <table class="table-style">
+          <thead>
+              <tr>
+                  <th class="td-style">RTCMultiConnection Demo Title</th>
+                  <th class="td-style">Demo</th>
+              </tr>
+          </thead>
+          <tbody>
+                <tr class="tr-style" style="background: #e4f6ff;">
+                    <td class="td-style">Scalable Audio/Video Broadcast</td>
+                    <td class="td-style"><a href="/demos/Scalable-Broadcast.html" class="td-style2">Demo</a></td>
+                </tr>
+          </tbody>
+      </table>
+  </section>
+
 </body>
 </html>
