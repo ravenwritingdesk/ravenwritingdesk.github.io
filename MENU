@@ -1,9 +1,9 @@
 menu
     Home                [/]
-    Research			[/research]
-	Publication         [/publications]
-	Courses				[/courses]
-    Activities			[/activities]
+    Research			[/research.html]
+	Publication         [/publications.html]
+	Courses				[/courses.html]
+    Activities			[/activities.html]
 Demos
     WebRTC                [/webrtc]
     Navier-Stokes_solver  [nses.html]
