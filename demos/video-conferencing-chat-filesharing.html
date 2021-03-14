@@ -19,21 +19,6 @@
       <li>
         <a href="/demos/">Demos</a>
       </li>
-      <li>
-        <a href="https://www.rtcmulticonnection.org/docs/getting-started/">Getting Started</a>
-      </li>
-      <li>
-        <a href="https://www.rtcmulticonnection.org/FAQ/">FAQ</a>
-      </li>
-      <li>
-        <a href="https://www.youtube.com/playlist?list=PLPRQUXAnRydKdyun-vjKPMrySoow2N4tl">YouTube</a>
-      </li>
-      <li>
-        <a href="https://github.com/muaz-khan/RTCMultiConnection/wiki">Wiki</a>
-      </li>
-      <li>
-        <a href="https://github.com/muaz-khan/RTCMultiConnection">Github</a>
-      </li>
     </nav>
   </header>
 
@@ -66,7 +51,7 @@
   </section>
 
 <script src="/dist/RTCMultiConnection.min.js"></script>
-<script src="/node_modules/webrtc-adapter/out/adapter.js"></script>
+<script src="/adapter.js"></script>
 <script src="/socket.io/socket.io.js"></script>
 
 <!-- custom layout for HTML5 audio/video elements -->
@@ -157,10 +142,10 @@ function appendDIV(event) {
 var connection = new RTCMultiConnection();
 
 // by default, socket.io server is assumed to be deployed on your own URL
-connection.socketURL = '/';
+// connection.socketURL = '/';
 
 // comment-out below line if you do not have your own socket.io server
-// connection.socketURL = 'https://rtcmulticonnection.herokuapp.com:443/';
+connection.socketURL = 'https://rtcmulticonnection.herokuapp.com:443/';
 
 connection.socketMessageEvent = 'audio-video-file-chat-demo';
 
@@ -347,11 +332,5 @@ if (roomid && roomid.length) {
     disableInputButtons();
 }
 </script>
-
-  <footer>
-    <small id="send-message"></small>
-  </footer>
-
-  <script src="https://www.webrtc-experiment.com/common.js"></script>
 </body>
 </html>
