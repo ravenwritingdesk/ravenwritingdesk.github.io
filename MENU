@@ -1,14 +1,14 @@
 menu
     Home                [index.html]
-    Research			[research.html]
-	Publication         [publications.html]
-	Courses				[courses.html]
-    Activities			[activities.html]
+    Research			[/research]
+	Publication         [/publications]
+	Courses				[/courses]
+    Activities			[/activities]
 Demos
-    WebRTC                [webrtc.html]
+    WebRTC                [/webrtc]
     Navier-Stokes_solver  [nses.html]
 
 	
 links
    GitHub   		[https://github.com/ravenwritingdesk]
-   Blog             [blog.html]
+   Blog             [/blog]
