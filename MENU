@@ -5,7 +5,7 @@ menu
 	Courses				[courses.html]
     Activities			[activities.html]
 Demos
-    WebRTC                [/webrtc.html]
+    WebRTC                [webrtc.html]
     Navier-Stokes_solver  [nses.html]
 
 	
