@@ -1,4 +1,5 @@
 ﻿<!-- Demo version: 2018.12.11 -->
+<!-- C.wangchuwen -->
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -6,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Dashboard + Video Conferencing + Chat + File Sharing | RTCMultiConnection</title>
-  <meta name="description" content="WebRTC Dashboard including support for canvas drawing, canvas data syncing, video conferencing, screen sharing and video conferencing. Including chat and file sharing.">
+  <meta name="description" content="WebRTC Dashboard.">
 
   <link rel="shortcut icon" href="/webrtc/logo.png">
   <link rel="stylesheet" type="text/css" href="/webrtc/emojionearea.min.css">
@@ -221,7 +222,7 @@ connection.maxParticipantsAllowed = 1000;
 var designer = new CanvasDesigner();
 
 // you can place widget.html anywhere
-designer.widgetHtmlURL = '/webrtc/widget.html';
+designer.widgetHtmlURL = '/webrtc/dashboard/widget.html';
 designer.widgetJsURL = '/webrtc/widget.min.js'
 
 designer.addSyncListener(function(data) {
