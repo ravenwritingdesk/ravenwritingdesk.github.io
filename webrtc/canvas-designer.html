@@ -1,4 +1,4 @@
-﻿<!-- Demo version: 2018.12.01 -->
+﻿<!-- Demo version: 2018.12.11 -->
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -11,8 +11,8 @@
   <link rel="shortcut icon" href="/demos/logo.png">
   <link rel="stylesheet" type="text/css" href="/demos/css/emojionearea.min.css">
 
-  <script src="/demos/js/jquery.min.js"></script>
-  <link href="/demos/css/bootstrap.min.css" rel="stylesheet">
+  <script src="/webrtc/jquery.min.js"></script>
+  <link href="/webrtc/bootstrap.min.css" rel="stylesheet">
   <script src="/node_modules/webrtc-adapter/out/adapter.js"></script>
   <script src="/dist/RTCMultiConnection.min.js"></script>
   <script src="/socket.io/socket.io.js"></script>
@@ -142,10 +142,23 @@ hr {
     width: 15px;
     vertical-align: middle;
 }
+
+#screen-viewer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999999999999;
+    display: none;
+}
 </style>
 
 <article>
+
 <div id="widget-container" style="position: fixed;bottom: 0;right: 0;left: 20%;height: 100%;border: 1px solid black; border-top:0; border-bottom: 0;"></div>
+<video id="screen-viewer" controls playsinline autoplay></video>
+
 <div style="width: 20%; height: 100%; position: absolute;left:0;">
     <video id="main-video" controls playsinline autoplay></video>
     <div id="other-videos"></div>
@@ -283,16 +296,7 @@ connection.onopen = function(event) {
 
     document.getElementById('btn-chat-message').disabled = false;
     document.getElementById('btn-attach-file').style.display = 'inline-block';
-
-    if(params.demoType === 'screen-sharing') {
-        document.getElementById('btn-share-screen').style.display = 'inline-block';
-    }
-
-    if(params.demoType === 'canvas-stream') {
-        connection.send({
-            showMainVideo: true
-        }, event.userid);
-    }
+    document.getElementById('btn-share-screen').style.display = 'inline-block';
 };
 
 connection.onclose = connection.onerror = connection.onleave = function(event) {
@@ -301,12 +305,20 @@ connection.onclose = connection.onerror = connection.onleave = function(event) {
 
 connection.onmessage = function(event) {
     if(event.data.showMainVideo) {
-        $('#main-video').show();
+        // $('#main-video').show();
+        $('#screen-viewer').css({
+            top: $('#widget-container').offset().top,
+            left: $('#widget-container').offset().left,
+            width: $('#widget-container').width(),
+            height: $('#widget-container').height()
+        });
+        $('#screen-viewer').show();
         return;
     }
 
     if(event.data.hideMainVideo) {
-        $('#main-video').hide();
+        // $('#main-video').hide();
+        $('#screen-viewer').hide();
         return;
     }
 
@@ -343,41 +355,12 @@ connection.onmessage = function(event) {
 
 // extra code
 
-function beforeOpenRoom(callback) {
-    if(params.demoType !== 'canvas-stream') {
-        callback();
-        return;
-    }
-
-    // capture canvas-2d stream
-    // and share in realtime using RTCPeerConnection.addStream
-    // requires: dev/webrtc-handler.js
-    designer.captureStream(function(stream) {
-        stream.isScreen = true;
-        stream.streamid = stream.id;
-        stream.type = 'local';
-
-        /*
-        var video = document.createElement('video');
-        video.muted = true;
-        video.srcObject = stream;
-        video.play();
-        */
-
-        connection.attachStreams.push(stream);
-        connection.onstream({
-            stream: stream,
-            type: 'local',
-            streamid: stream.id,
-            // mediaElement: video
-        });
-
-        callback();
-    });
-}
-
 connection.onstream = function(event) {
-    if (event.stream.isScreen) {
+    if (event.stream.isScreen && !event.stream.canvasStream) {
+        $('#screen-viewer').get(0).srcObject = event.stream;
+        $('#screen-viewer').hide();
+    }
+    else if (event.extra.roomOwner === true) {
         var video = document.getElementById('main-video');
         video.setAttribute('data-streamid', event.streamid);
         // video.style.display = 'none';
@@ -386,6 +369,7 @@ connection.onstream = function(event) {
             video.volume = 0;
         }
         video.srcObject = event.stream;
+        $('#main-video').show();
     } else {
         event.mediaElement.controls = false;
 
@@ -625,17 +609,15 @@ if(!!params.password) {
 
 designer.appendTo(document.getElementById('widget-container'), function() {
     if (params.open === true || params.open === 'true') {
-        beforeOpenRoom(function() {
-            if(params.demoType === 'screen-sharing') {
-                var tempStreamCanvas = document.getElementById('temp-stream-canvas');
-                var tempStream = tempStreamCanvas.captureStream();
-                tempStream.isScreen = true;
-                tempStream.streamid = tempStream.id;
-                tempStream.type = 'local';
-                connection.attachStreams.push(tempStream);
-                window.tempStream = tempStream;
-            }
+            var tempStreamCanvas = document.getElementById('temp-stream-canvas');
+            var tempStream = tempStreamCanvas.captureStream();
+            tempStream.isScreen = true;
+            tempStream.streamid = tempStream.id;
+            tempStream.type = 'local';
+            connection.attachStreams.push(tempStream);
+            window.tempStream = tempStream;
 
+            connection.extra.roomOwner = true;
             connection.open(params.sessionid, function(isRoomOpened, roomid, error) {
                 if (error) {
                     if (error === connection.errors.ROOM_NOT_AVAILABLE) {
@@ -649,7 +631,6 @@ designer.appendTo(document.getElementById('widget-container'), function() {
                     location.reload();
                 });
             });
-        });
     } else {
         connection.join(params.sessionid, function(isRoomJoined, roomid, error) {
             if (error) {
@@ -756,7 +737,8 @@ function replaceScreenTrack(stream) {
             hideMainVideo: true
         });
 
-        $('#main-video').hide();
+        // $('#main-video').hide();
+        $('#screen-viewer').hide();
         $('#btn-share-screen').show();
         replaceTrack(tempStream.getTracks()[0], screenTrackId);
     });
@@ -771,7 +753,14 @@ function replaceScreenTrack(stream) {
         showMainVideo: true
     });
 
-    $('#main-video').show();
+    // $('#main-video').show();
+    $('#screen-viewer').css({
+            top: $('#widget-container').offset().top,
+            left: $('#widget-container').offset().left,
+            width: $('#widget-container').width(),
+            height: $('#widget-container').height()
+        });
+    $('#screen-viewer').show();
 }
 
 $('#btn-share-screen').click(function() {

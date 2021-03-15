@@ -8,20 +8,20 @@
   <title>Dashboard + Video Conferencing + Chat + File Sharing | RTCMultiConnection</title>
   <meta name="description" content="WebRTC Dashboard including support for canvas drawing, canvas data syncing, video conferencing, screen sharing and video conferencing. Including chat and file sharing.">
 
-  <link rel="shortcut icon" href="/demos/logo.png">
-  <link rel="stylesheet" type="text/css" href="/demos/css/emojionearea.min.css">
+  <link rel="shortcut icon" href="/webrtc/logo.png">
+  <link rel="stylesheet" type="text/css" href="/webrtc/emojionearea.min.css">
 
-  <script src="/demos/js/jquery.min.js"></script>
-  <link href="/demos/css/bootstrap.min.css" rel="stylesheet">
-  <script src="/node_modules/webrtc-adapter/out/adapter.js"></script>
-  <script src="/dist/RTCMultiConnection.min.js"></script>
-  <script src="/socket.io/socket.io.js"></script>
-  <script src="/node_modules/fbr/FileBufferReader.js"></script>
+  <script src="/webrtc/jquery.min.js"></script>
+  <link href="/webrtc/bootstrap.min.css" rel="stylesheet">
+  <script src="/webrtc/adapter.js"></script>
+  <script src="/webrtc/RTCMultiConnection.min.js"></script>
+  <script src="/webrtc/socket.io.js"></script>
+  <script src="/webrtc/FileBufferReader.js"></script>
 
-  <script src="/node_modules/canvas-designer/dev/webrtc-handler.js"></script>
-  <script src="/node_modules/canvas-designer/canvas-designer-widget.js"></script>
-  <script src="/demos/js/emojionearea.min.js"></script>
-  <!-- <script src="/node_modules/multistreamsmixer/MultiStreamsMixer.js"></script> -->
+  <script src="/webrtc/webrtc-handler.js"></script>
+  <script src="/webrtc/canvas-designer-widget.js"></script>
+  <script src="/webrtc/emojionearea.min.js"></script>
+  <!-- <script src="/webrtc/MultiStreamsMixer.js"></script> -->
 
 <style type="text/css">
 html, body, section, ul, li, nav, a, h1, h2 {
@@ -199,8 +199,8 @@ hr {
 
 var connection = new RTCMultiConnection();
 
-connection.socketURL = '/';
-// connection.socketURL = 'https://rtcmulticonnection.herokuapp.com:443/';
+// connection.socketURL = '/';
+connection.socketURL = 'https://rtcmulticonnection.herokuapp.com:443/';
 
 connection.extra.userFullName = params.userFullName;
 
@@ -221,8 +221,8 @@ connection.maxParticipantsAllowed = 1000;
 var designer = new CanvasDesigner();
 
 // you can place widget.html anywhere
-designer.widgetHtmlURL = '/node_modules/canvas-designer/widget.html';
-designer.widgetJsURL = '/node_modules/canvas-designer/widget.min.js'
+designer.widgetHtmlURL = '/webrtc/widget.html';
+designer.widgetJsURL = '/webrtc/widget.min.js'
 
 designer.addSyncListener(function(data) {
     connection.send(data);
