@@ -22,7 +22,7 @@
   <script src="/webrtc/webrtc-handler.js"></script>
   <script src="/webrtc/canvas-designer-widget.js"></script>
   <script src="/webrtc/emojionearea.min.js"></script>
-  <!-- <script src="/webrtc/MultiStreamsMixer.js"></script> -->
+  <script src="/webrtc/MultiStreamsMixer.js"></script>
 
 <style type="text/css">
 html, body, section, ul, li, nav, a, h1, h2 {
@@ -246,11 +246,11 @@ designer.setTools({
     quadratic: false,
     bezier: true,
     marker: true,
-    zoom: false,
-    lineWidth: false,
-    colorsPicker: false,
-    extraOptions: false,
-    code: false,
+    zoom: true,
+    lineWidth: true,
+    colorsPicker: true,
+    extraOptions: true,
+    code: true,
     undo: true
 });
 
@@ -463,7 +463,7 @@ $('#txt-chat-message').emojioneArea({
             }, 1200);
         },
         blur: function() {
-            // $('#btn-chat-message').click();
+            $('#btn-chat-message').click();//mmmmmmmmmm
             connection.send({
                 typing: false
             });
@@ -724,12 +724,12 @@ function replaceScreenTrack(stream) {
     stream.streamid = stream.id;
     stream.type = 'local';
 
-    // connection.attachStreams.push(stream);
+    connection.attachStreams.push(stream);//mmmmm
     connection.onstream({
         stream: stream,
         type: 'local',
         streamid: stream.id,
-        // mediaElement: video
+        mediaElement: video//mmmmmm
     });
 
     var screenTrackId = stream.getTracks()[0].id;
@@ -738,7 +738,7 @@ function replaceScreenTrack(stream) {
             hideMainVideo: true
         });
 
-        // $('#main-video').hide();
+        $('#main-video').hide();//mmmmmmm
         $('#screen-viewer').hide();
         $('#btn-share-screen').show();
         replaceTrack(tempStream.getTracks()[0], screenTrackId);
@@ -754,7 +754,7 @@ function replaceScreenTrack(stream) {
         showMainVideo: true
     });
 
-    // $('#main-video').show();
+    $('#main-video').show();//mmmm
     $('#screen-viewer').css({
             top: $('#widget-container').offset().top,
             left: $('#widget-container').offset().left,
