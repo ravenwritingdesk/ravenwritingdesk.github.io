@@ -308,7 +308,7 @@ connection.onclose = connection.onerror = connection.onleave = function(event) {
 
 connection.onmessage = function(event) {
     if(event.data.showMainVideo) {
-        // $('#main-video').show();
+        $('#main-video').show();
         $('#screen-viewer').css({
             top: $('#widget-container').offset().top,
             left: $('#widget-container').offset().left,
@@ -366,7 +366,7 @@ connection.onstream = function(event) {
     else if (event.extra.roomOwner === true) {
         var video = document.getElementById('main-video');
         video.setAttribute('data-streamid', event.streamid);
-        // video.style.display = 'none';
+        video.style.display = 'none';//
         if(event.type === 'local') {
             video.muted = true;
             video.volume = 0;
