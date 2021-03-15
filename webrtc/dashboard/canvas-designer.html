@@ -6,7 +6,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Dashboard + Video Conferencing + Chat + File Sharing | RTCMultiConnection</title>
+  <title>Dashboard</title>
   <meta name="description" content="WebRTC Dashboard.">
 
   <link rel="shortcut icon" href="/webrtc/logo.png">
@@ -296,6 +296,8 @@ connection.onopen = function(event) {
     }
 
     document.getElementById('btn-chat-message').disabled = false;
+    document.getElementById('btn-share-screen').disabled = false;
+
     document.getElementById('btn-attach-file').style.display = 'inline-block';
     document.getElementById('btn-share-screen').style.display = 'inline-block';
 };
@@ -318,7 +320,7 @@ connection.onmessage = function(event) {
     }
 
     if(event.data.hideMainVideo) {
-        $('#main-video').hide();
+        $('#main-video').hide();//mmmmmm
         $('#screen-viewer').hide();
         return;
     }
