@@ -6,7 +6,7 @@ menu
     Activities			[/activities.html]
 Demos
     WebRTC                [/webrtc]
-    Navier-Stokes_solver  [/navier_stokes]
+    Navier-Stokes         [/navier_stokes]
     Snake                 [snake.html]
     backpac               [/bp]
 
