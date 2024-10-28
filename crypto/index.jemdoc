@@ -1,0 +1,11 @@
+# jemdoc: menu{../MENU}{index.html}, nofooter  
+
+
+~~~
+{}{img_left}{/fig/cat.jpg}{CAT}{100px}{100px}{}
+== CAT 
+CAT is an encrypted digital currency, created on May 15, 2021.
+~~~
+
+== Currency Transaction
+Coming soon

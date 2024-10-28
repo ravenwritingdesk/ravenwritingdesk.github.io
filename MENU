@@ -1,0 +1,21 @@
+menu
+    Home                [/]
+    Research			[/research.html]
+	Publication         [/publications.html]
+	Courses				[/courses.html]
+    Activities			[/activities.html]
+Demos
+    WebRTC                [/webrtc]
+    Navier-Stokes         [/navier_stokes]
+    Snake                 [snake.html]
+    backpac               [/bp]
+
+Software
+    Store                 [/store]
+    Cooperation           [/cooperation]
+    Crypto                [/crypto]
+	
+links
+   GitHub   		[https://github.com/ravenwritingdesk]
+   Blog             [/blog]
+ 
