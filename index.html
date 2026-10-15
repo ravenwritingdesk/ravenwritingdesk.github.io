@@ -32,7 +32,7 @@
 <div>
 <!-- Begin ShinyStat Code -->
 <script type="text/javascript" src="//codice.shinystat.com/cgi-bin/getcod.cgi?USER=SS-44156123-0286a"></script>
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=AM_HTMLorMML-full"></script>
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=AM_HTMLorMML-full"></script>
 <noscript>
 <a href="https://www.shinystat.com/" target="_top">
 <img src="//www.shinystat.com/cgi-bin/shinystat.cgi?USER=SS-44156123-0286a" alt="Site stats" style="border:0px" /></a>
@@ -81,8 +81,15 @@ js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';i
 
 <h2>Publications</h2>
 
-
-<ul>
+<div style="text-align: right; margin: 6px 0 12px 0;">
+  <label for="publication-sort">Sort by year:</label>
+  <select id="publication-sort" aria-label="Sort publications by year">
+    <option value="asc" selected="selected">Oldest first</option>
+    <option value="desc">Newest first</option>
+  </select>
+</div>
+<div id="publication-list">
+<ul class="publication-entry" data-year="2024">
 <table class="imgtable"><tr><td>
 <img src="fig/twist.png" alt="CS" width="455px" height="160px" />&nbsp;</td>
 <td align="left"><ul>
@@ -95,8 +102,7 @@ arXiv:2410.20489 [math.GT], 2024<br />
 </td></tr></table>
 </ul>
 
-
-<ul>
+<ul class="publication-entry" data-year="2025">
 <table class="imgtable"><tr><td>
 <img src="fig/ga.jpg" alt="SGA2024" width="120px" height="160px" />&nbsp;</td>
 <td align="left"><ul>
@@ -110,8 +116,7 @@ ISBN: 9787030827708<br />
 </td></tr></table>
 </ul>
 
-
-<ul>
+<ul class="publication-entry" data-year="2026">
 <table class="imgtable"><tr><td>
 <img src="fig/random.png" alt="CS" width="200px" height="200px" />&nbsp;</td>
 <td align="left"><ul>
@@ -124,7 +129,7 @@ arXiv:2601.14909 [math.PR], 2026<br />
 </td></tr></table>
 </ul>
 
-<ul>
+<ul class="publication-entry" data-year="2026">
 <table class="imgtable"><tr><td>
 <img src="fig/THP.png" alt="CS" width="200px" height="160px" />&nbsp;</td>
 <td align="left"><ul>
@@ -137,10 +142,7 @@ arXiv:2608.03575 [math.PR], 2026<br />
 </td></tr></table>
 </ul>
 
-
-
-
-<ul>
+<ul class="publication-entry" data-year="2026">
 <table class="imgtable"><tr><td>
 <img src="fig/sigma.png" alt="CS" width="200px" height="160px" />&nbsp;</td>
 <td align="left"><ul>
@@ -153,10 +155,7 @@ arXiv:2609.13766 [math.QA], 2026<br />
 </td></tr></table>
 </ul>
 
-
-
-
-<ul>
+<ul class="publication-entry" data-year="">
 <table class="imgtable"><tr><td>
 &nbsp;</td>
 <td align="left"><ul>
@@ -169,10 +168,7 @@ in preparation<br />
 </td></tr></table>
 </ul>
 
-
-
-
-<ul>
+<ul class="publication-entry" data-year="">
 <table class="imgtable"><tr><td>
 &nbsp;</td>
 <td align="left"><ul>
@@ -184,6 +180,42 @@ in preparation<br />
 </ul>
 </td></tr></table>
 </ul>
+</div>
+<script type="text/javascript">
+(function () {
+  var list = document.getElementById('publication-list');
+  var select = document.getElementById('publication-sort');
+  if (!list || !select) { return; }
+
+  // Keep the original order of papers from the same year.
+  var entries = Array.prototype.slice.call(list.children);
+  entries.forEach(function (entry, index) {
+    entry.setAttribute('data-original-order', String(index));
+  });
+
+  function sortPublications() {
+    var direction = select.value === 'desc' ? -1 : 1;
+    entries.sort(function (a, b) {
+      var yearA = parseInt(a.getAttribute('data-year'), 10);
+      var yearB = parseInt(b.getAttribute('data-year'), 10);
+      var missingA = isNaN(yearA);
+      var missingB = isNaN(yearB);
+
+      // "In preparation" entries stay at the bottom in either direction.
+      if (missingA !== missingB) { return missingA ? 1 : -1; }
+      if (!missingA && yearA !== yearB) {
+        return (yearA - yearB) * direction;
+      }
+      return parseInt(a.getAttribute('data-original-order'), 10) -
+             parseInt(b.getAttribute('data-original-order'), 10);
+    });
+    entries.forEach(function (entry) { list.appendChild(entry); });
+  }
+
+  select.addEventListener('change', sortPublications);
+  sortPublications(); // Default: oldest first.
+}());
+</script>
 
 <h2>Talks</h2>
 <p>
